@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Download the recovery image if not present
+if [ ! -f recovery.img ]; then
+    curl -L -o recovery.img $RECOVERY_URL
+fi
+
 # Check if the .lz4 file exists and unpack if so
 if [ -f recovery.img.lz4 ]; then
     lz4 -B6 --content-size -f recovery.img.lz4 recovery.img
